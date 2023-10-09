@@ -35,11 +35,7 @@ export const App = () => {
         contact.number.trim() === newContact.number.trim()
     ).length
       ? alert(`${newContact.name}: is already in contacts`)
-      : setContacts(({ contacts }) => {
-          return {
-            contacts: [newContact, ...contacts],
-          };
-        });
+      : setContacts([newContact, ...contacts]);
   };
 
   const deleteContact = contactId => {
@@ -47,7 +43,7 @@ export const App = () => {
   };
 
   const changeFilter = event => {
-    setFilter({ filter: event.currentTarget.value.toLowerCase() });
+    setFilter(event.currentTarget.value.toLowerCase());
   };
 
   const getVisibleContacts = () => {
@@ -64,7 +60,7 @@ export const App = () => {
       <Filter value={filter} onChange={changeFilter} />
       <ContactList
         deleteContact={deleteContact}
-        contacts={getVisibleContacts}
+        contacts={getVisibleContacts()}
       />
     </div>
   );
